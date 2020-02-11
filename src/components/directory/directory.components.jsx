@@ -4,7 +4,7 @@ import './directory.styles.sass'
 
 class Directory extends Component {
     constructor() {
-        super();
+        super()
         this.state = {
             sections: [
                 {
