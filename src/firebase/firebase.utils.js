@@ -3,7 +3,7 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 const config = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    apiKey: 'AIzaSyAdGbu8p1k6t8YYnMa-vnXPQCmVwGDnfkY',
     authDomain: "phiccify-db.firebaseapp.com",
     databaseURL: "https://phiccify-db.firebaseio.com",
     projectId: "phiccify-db",
