@@ -29,7 +29,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div className='App Fade'>
                 <Header currentUser={this.state.currentUser}/>
                 <Switch>
                     <Route exact path="/" component={HomePage}/>

@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter} from 'react-router-dom'
 import './index.css';
 import App from './App';
+import 'pace-js'
+import 'pace-js/themes/red/pace-theme-minimal.css'
+
 
 import * as serviceWorker from './serviceWorker';
 
