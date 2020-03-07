@@ -33,7 +33,7 @@ class SignUp extends Component{
                 confirmPassword: ''
             })
         }catch (e) {
-        console.log(e)
+
         }
     }
     handleChange = e => {
