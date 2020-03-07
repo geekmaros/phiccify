@@ -5,7 +5,7 @@ import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
-import {auth} from "./firebase/firebase.utils";
+import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
 require('dotenv').config()
 
 class App extends Component {
@@ -17,9 +17,25 @@ class App extends Component {
     }
     unsubscribeFromAuth = null
     componentDidMount() {
-        this.unsubscribeFromAuth = auth.onAuthStateChanged( user => {
-            this.setState({currentUser: user})
+        this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
+            // this.setState({currentUser: user})
+            if (userAuth){
+                const userRef = await createUserProfileDocument(userAuth)
 
+                userRef.onSnapshot(snapshot => {
+                    console.log(snapshot)
+                    this.setState({
+                        currentUser: {
+                            id: snapshot.id,
+                            ...snapshot.data()
+                        }
+                    })
+                    console.log(this.state)
+                })
+
+            }
+
+    this.setState({currentUser: userAuth})
         })
     }
 
@@ -28,13 +44,14 @@ class App extends Component {
     }
 
     render() {
+
         return (
             <div className='App Fade'>
                 <Header currentUser={this.state.currentUser}/>
                 <Switch>
                     <Route exact path="/" component={HomePage}/>
-                    <Route exact path="/shop" component={ShopPage}/>
-                    <Route exact path="/sign-in" component={SignInAndSignUpPage}/>
+                    <Route  path="/shop" component={ShopPage}/>
+                    <Route  path="/sign-in" component={SignInAndSignUpPage}/>
                 </Switch>
             </div>
         );

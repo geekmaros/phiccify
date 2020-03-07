@@ -21,11 +21,20 @@
 
   &.google-sign-in
     background-color: #4285f4
+    width: auto
+    font-size: .9rem
     color: #ffffff
+    line-height: 1rem
     &.hover
       background-color: #357ae8
       border: none
       outline: none
 
+@media screen and (max-width: 768px)
+  .custom-button
+    min-width: 100%
+    margin-bottom: 10px
 
+    &.google-sign-in
+      min-width: 100%
 
