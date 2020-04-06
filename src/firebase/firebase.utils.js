@@ -17,6 +17,8 @@ const config = {
 export  const  createUserProfileDocument = async (userAuth, additionalData) =>{
     if (!userAuth) return ;
     const userRef = firestore.doc(`users/${userAuth.uid}`)
+
+    //the .get() method was from the firestore.doc which helps us perform CRUD ops
     const snapshot = await userRef.get()
 
     if(!snapshot.exists){
@@ -36,7 +38,6 @@ export  const  createUserProfileDocument = async (userAuth, additionalData) =>{
         }
     }
     return  userRef
-    console.log(snapshot)
 
 }
 

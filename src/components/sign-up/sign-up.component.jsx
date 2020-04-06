@@ -25,19 +25,20 @@ class SignUp extends Component{
 
         try {
             const {user} = await auth.createUserWithEmailAndPassword(email, password)
+
             await createUserProfileDocument(user, {displayName})
             this.setState({
                 displayName: '',
                 email: '',
                 password: '',
-                confirmPassword: ''
+                 confirmPassword: ''
             })
         }catch (e) {
 
         }
     }
     handleChange = e => {
-        console.log(e.target.value)
+
         const  {name, value } = e.target
         this.setState({[name]: value})
     }

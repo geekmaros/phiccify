@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter} from 'react-router-dom'
+import { Provider } from 'react-redux'
 import './index.css';
 import App from './App';
 import 'pace-js'
@@ -8,11 +9,15 @@ import 'pace-js/themes/red/pace-theme-minimal.css'
 
 
 import * as serviceWorker from './serviceWorker';
+import store from './redux/store'
 
 ReactDOM.render(
+//    the provider component is needed to warp around our app to enable us use redux
+<Provider store={store}>
 <BrowserRouter>
 <App />
-</BrowserRouter>   
+</BrowserRouter>
+</Provider>
 , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
