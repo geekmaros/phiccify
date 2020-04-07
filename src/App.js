@@ -10,6 +10,7 @@ import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
 import {setCurrentUser} from './redux/user/user.action'
 require('dotenv').config()
 
+
 class App extends Component {
     // constructor() {
     //     super();
@@ -55,6 +56,7 @@ class App extends Component {
                     <Route exact path="/" component={HomePage}/>
                     <Route  path="/shop" component={ShopPage}/>
                     <Route  path="/sign-in"  render={ () => this.props.currentUser ? (<Redirect to='/' />) : (<SignInAndSignUpPage/>) } />
+
                 </Switch>
             </div>
         );

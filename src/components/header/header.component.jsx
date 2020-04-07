@@ -3,7 +3,9 @@ import  './header.styles.sass'
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux'
 import {ReactComponent as Logo} from '../../assets/4.4 crown.svg.svg'
+import CartIcon from "../cart-icon/cart-icon.component";
 import  { auth } from "../../firebase/firebase.utils";
+import CartDropDown from "../cart-dropdown/cart-dropdown.component";
 
 const Header = ({currentUser}) => (
     <div className='header'>
@@ -21,9 +23,12 @@ const Header = ({currentUser}) => (
                }
 
             <Link className="option" to='/cart'>
-                CART
+                CONTACT
             </Link>
+
+                <CartIcon/>
         </div>
+        <CartDropDown/>
     </div>
 )
 const mapStateToProps = state => ({
