@@ -7,7 +7,8 @@ import CartIcon from "../cart-icon/cart-icon.component";
 import  { auth } from "../../firebase/firebase.utils";
 import CartDropDown from "../cart-dropdown/cart-dropdown.component";
 
-const Header = ({currentUser}) => (
+const Header = ({currentUser, isCartOn}) => (
+
     <div className='header'>
         <Link className='logo-container' to='/'>
             <Logo className='logo'/>
@@ -26,12 +27,22 @@ const Header = ({currentUser}) => (
                 CONTACT
             </Link>
 
-                <CartIcon/>
+            <CartIcon  />
         </div>
-        <CartDropDown/>
+        {
+
+            isCartOn ? <CartDropDown/> : ''
+
+        }
+
     </div>
 )
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
+//the state was destructured as shown below to users and cart
+const mapStateToProps = ({user: {currentUser},cart: {isCartOn}}) => ({
+    currentUser,
+    isCartOn
 })
-export  default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch =>({
+
+})
+export  default connect(mapStateToProps, mapDispatchToProps)(Header);
