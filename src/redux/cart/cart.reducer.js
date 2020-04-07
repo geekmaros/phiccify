@@ -1,7 +1,8 @@
 import {cartTypes} from "./cart.types";
 
 const CartSate = {
-    isCartOn: false
+    isCartOn: false,
+    cartItems: []
 }
 
 const cartReducer = (state = CartSate, action) => {
@@ -10,7 +11,14 @@ const cartReducer = (state = CartSate, action) => {
             return{
                 ...state,
                 isCartOn: !state.isCartOn
-            }
+            };
+        case cartTypes.ADD_ITEM:
+            return {
+                ...state,
+                cartItems: [...state.cartItems, action.payload]
+            };
+
+
         default:
             return state
     }
