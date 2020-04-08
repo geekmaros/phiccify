@@ -7,7 +7,7 @@ import CartIcon from "../cart-icon/cart-icon.component";
 import  { auth } from "../../firebase/firebase.utils";
 import CartDropDown from "../cart-dropdown/cart-dropdown.component";
 
-const Header = ({currentUser, isCartOn}) => (
+const Header = ({currentUser, showCart}) => (
 
     <div className='header'>
         <Link className='logo-container' to='/'>
@@ -31,16 +31,16 @@ const Header = ({currentUser, isCartOn}) => (
         </div>
         {
 
-            isCartOn ? <CartDropDown/> : ''
+            showCart ? <CartDropDown/> : ''
 
         }
 
     </div>
 )
 //the state was destructured as shown below to users and cart
-const mapStateToProps = ({user: {currentUser},cart: {isCartOn}}) => ({
+const mapStateToProps = ({user: {currentUser},cart: {showCart}}) => ({
     currentUser,
-    isCartOn
+    showCart
 })
 const mapDispatchToProps = dispatch =>({
 

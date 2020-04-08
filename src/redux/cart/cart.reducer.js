@@ -1,7 +1,8 @@
 import {cartTypes} from "./cart.types";
+import {addItemToCart} from "./cart.utils";
 
 const CartSate = {
-    isCartOn: false,
+    showCart: false,
     cartItems: []
 }
 
@@ -10,12 +11,13 @@ const cartReducer = (state = CartSate, action) => {
         case cartTypes.TOGGLE_CART:
             return{
                 ...state,
-                isCartOn: !state.isCartOn
+                showCart: !state.showCart
             };
         case cartTypes.ADD_ITEM:
             return {
                 ...state,
-                cartItems: [...state.cartItems, action.payload]
+                cartItems: addItemToCart(state.cartItems, action.payload)
+                    //[...state.cartItems, action.payload]
             };
 
 
