@@ -7,6 +7,11 @@ export const selectCartItems = createSelector(
     cart => cart.cartItems
 )
 
+export const toggleCart = createSelector(
+    [selectCart],
+    cart => cart.showCart
+)
+
 export const selectCartItemCount = createSelector(
     [selectCartItems],
     cartItems => cartItems.reduce((accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity , 0)

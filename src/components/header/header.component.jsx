@@ -5,7 +5,11 @@ import {connect} from 'react-redux'
 import {ReactComponent as Logo} from '../../assets/4.4 crown.svg.svg'
 import CartIcon from "../cart-icon/cart-icon.component";
 import  { auth } from "../../firebase/firebase.utils";
+import {toggleCart} from "../../redux/cart/cart.selector";
+import {selectCurrentUser} from "../../redux/user/user.selector";
+import {createStructuredSelector} from "reselect";
 import CartDropDown from "../cart-dropdown/cart-dropdown.component";
+
 
 const Header = ({currentUser, showCart}) => (
 
@@ -37,10 +41,18 @@ const Header = ({currentUser, showCart}) => (
 
     </div>
 )
+
+
 //the state was destructured as shown below to users and cart
-const mapStateToProps = ({user: {currentUser},cart: {showCart}}) => ({
-    currentUser,
-    showCart
+// const mapStateToProps = ({user: {currentUser},cart: {showCart}}) => ({
+//     currentUser,
+//     showCart
+// })
+
+//mapstate below using reselect library for memoization
+const mapStateToProps = createStructuredSelector({
+    currentUser : selectCurrentUser,
+    showCart: toggleCart
 })
 const mapDispatchToProps = dispatch =>({
 
