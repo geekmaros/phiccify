@@ -5,13 +5,16 @@ import {ReactComponent as ShoppingIcon} from "../../assets/11.2 shopping-bag.svg
 
 import './cart-icon.styles.sass'
 
-const CartIcon = ({toggle}) => (
+const CartIcon = ({toggle, itemCount}) => (
     <div className='cart-icon' onClick={() => toggle()}>
         <ShoppingIcon className='shopping-icon'/>
-        <span className='item-count'>0</span>
+        <span className='item-count'>{itemCount}</span>
     </div>
 )
+const mapStateToProps = ({cart: {cartItems}}) => ({
+  itemCount: cartItems.reduce((accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity , 0)
+})
 const mapDispatchToProps = dispatch => ({
 toggle: () => dispatch(toggleCart())
 })
-export default connect(null, mapDispatchToProps)(CartIcon)
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon)
