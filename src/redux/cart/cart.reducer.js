@@ -2,6 +2,7 @@ import {cartTypes} from "./cart.types";
 import {addItemToCart} from "./cart.utils";
 import {removeItemFromCart} from "./cart.utils";
 
+
 const CartSate = {
     showCart: false,
     cartItems: []
@@ -25,9 +26,11 @@ const cartReducer = (state = CartSate, action) => {
                 ...state,
                 cartItems:  removeItemFromCart(state.cartItems, action.payload)
             }
-
-
-
+        case cartTypes.CLEAR_ITEM_FROM_CART:
+            return {
+                ...state,
+                cartItems: state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
+            }
         default:
             return state
     }
